@@ -1,0 +1,31 @@
+<!-- Add this form to the dashboard.html template -->
+<form id="change-password-form" method="post">
+    <label for="new-password">New Password:</label>
+    <input type="password" name="new-password" required>
+    <button type="submit">Change Password</button>
+</form>
+
+<script>
+    // Use JavaScript to handle form submission and AJAX request
+    document.getElementById("change-password-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get the new password from the form
+        var newPassword = document.getElementsByName("new-password")[0].value;
+
+        // Make an AJAX request to change the password
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "{{ url_for('change_password') }}", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                alert("Password changed successfully!");
+            } else {
+                alert("Password change failed. Please try again.");
+            }
+        };
+
+        xhr.send(JSON.stringify({ new_password: newPassword }));
+    });
+</script>

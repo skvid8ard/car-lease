@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car List</title>
+</head>
+<body>
+    <h1>Car List</h1>
+
+    <ul>
+        {% for car in cars %}
+            <li>
+                <a href="{{ url_for('car_details', car_id=car.id) }}">
+                    {{ car.name }} - ${{ car.price }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Add any other content or features as needed -->
+
+</body>
+</html>
